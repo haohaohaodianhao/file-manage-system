@@ -101,8 +101,12 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="200" fixed="right">
+      <el-table-column label="操作" width="280" fixed="right">
         <template #default="{ row }">
+          <el-button type="primary" link @click="handleViewDetail(row)">
+            <el-icon><InfoFilled /></el-icon>
+            详情
+          </el-button>
           <el-button type="primary" link @click="handleDownload(row)">
             <el-icon><Download /></el-icon>
             下载
@@ -122,10 +126,16 @@
         v-model:page-size="pageSize"
         :total="total"
         :page-sizes="[10, 20, 50, 100]"
-        layout="total, sizes, prev, pager, next"
+        layout="sizes, prev, pager, next, jumper, ->, slot"
+        :background="true"
+        class="pagination"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-      />
+      >
+        <template #default>
+          <span class="pagination-total">共 {{ total }} 条</span>
+        </template>
+      </el-pagination>
     </div>
 
     <!-- 添加标签管理对话框 -->
@@ -167,15 +177,81 @@
         </div>
       </div>
     </el-dialog>
+
+    <!-- 添加文件详情对话框 -->
+    <el-dialog
+      v-model="detailDialogVisible"
+      title="文件详情"
+      width="600px"
+    >
+      <div v-if="fileDetail" class="file-detail">
+        <el-descriptions :column="1" border>
+          <el-descriptions-item label="文件名">
+            {{ fileDetail.original_name }}
+          </el-descriptions-item>
+          <el-descriptions-item label="文件类型">
+            {{ fileDetail.file_type }}
+          </el-descriptions-item>
+          <el-descriptions-item label="文件大小">
+            {{ formatFileSize(fileDetail.file_size) }}
+          </el-descriptions-item>
+          <el-descriptions-item label="上传时间">
+            {{ formatDate(fileDetail.created_at) }}
+          </el-descriptions-item>
+          <el-descriptions-item label="最后修改">
+            {{ formatDate(fileDetail.updated_at) }}
+          </el-descriptions-item>
+          <el-descriptions-item label="标签">
+            <div class="detail-tags">
+              <el-tag
+                v-for="tag in fileDetail.tags"
+                :key="tag.id"
+                size="small"
+                class="tag-item"
+              >
+                {{ tag.name }}
+              </el-tag>
+            </div>
+          </el-descriptions-item>
+        </el-descriptions>
+
+        <!-- 版本历史 -->
+        <div class="version-history">
+          <h3>版本历史</h3>
+          <el-timeline>
+            <el-timeline-item
+              v-for="backup in fileDetail.backups"
+              :key="backup.id"
+              :timestamp="formatDate(backup.created_at)"
+            >
+              <div class="version-item">
+                <span class="version">版本 {{ backup.version }}</span>
+                <div class="version-actions">
+                  <el-button
+                    type="primary"
+                    link
+                    size="small"
+                    @click="handleRestore(backup)"
+                  >
+                    恢复到此版本
+                  </el-button>
+                </div>
+              </div>
+            </el-timeline-item>
+          </el-timeline>
+        </div>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch, computed } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { Search, Upload, Download, Delete } from '@element-plus/icons-vue';
-import { getFileList, uploadFile, downloadFile, deleteFile } from '@/api/file';
+import { Search, Upload, Download, Delete, InfoFilled } from '@element-plus/icons-vue';
+import { getFileList, uploadFile, downloadFile, deleteFile, getFileDetail } from '@/api/file';
 import { getTagList, addTagToFile, removeTagFromFile, getFileTags } from '@/api/tag';
+import { restoreBackup } from '@/api/backup';
 
 // 状态变量
 const fileList = ref([]);
@@ -194,6 +270,10 @@ const tagDialogVisible = ref(false);
 
 // 添加标签过滤状态
 const selectedFilterTag = ref(null);
+
+// 文件详情相关
+const detailDialogVisible = ref(false);
+const fileDetail = ref(null);
 
 // 计算可用的标签（排除已添加的标签）
 const availableTags = computed(() => {
@@ -368,6 +448,43 @@ const handleRemoveTag = async (tag) => {
   }
 };
 
+// 查看文件详情
+const handleViewDetail = async (row) => {
+  try {
+    const res = await getFileDetail(row.id);
+    fileDetail.value = res.Data;
+    detailDialogVisible.value = true;
+  } catch (error) {
+    ElMessage.error('获取文件详情失败');
+    console.error('获取文件详情失败:', error);
+  }
+};
+
+// 恢复到指定版本
+const handleRestore = async (backup) => {
+  try {
+    await ElMessageBox.confirm(
+      `确定要将文件恢复到版本 ${backup.version} 吗？`,
+      '提示',
+      {
+        type: 'warning',
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }
+    );
+
+    await restoreBackup(fileDetail.value.id, backup.version);
+    ElMessage.success('恢复成功');
+    detailDialogVisible.value = false;
+    getFiles(); // 刷新文件列表
+  } catch (error) {
+    if (error !== 'cancel') {
+      ElMessage.error('恢复失败');
+      console.error('恢复失败:', error);
+    }
+  }
+};
+
 // 初始化
 onMounted(async () => {
   await getFiles();
@@ -417,6 +534,45 @@ watch([fileType, selectedFilterTag], () => {
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
+    padding: 10px;
+
+    .pagination {
+      .pagination-total {
+        margin-left: 16px;
+        color: #606266;
+        font-weight: normal;
+      }
+
+      :deep(.el-pagination__sizes) {
+        margin-right: 16px;
+        .el-input__inner {
+          &::placeholder {
+            font-size: 14px;
+          }
+        }
+        .el-select__caret {
+          font-size: 14px;
+        }
+      }
+
+      :deep(.el-pager li) {
+        background-color: #f4f4f5;
+        &.is-active {
+          background-color: #409eff;
+          color: #fff;
+        }
+      }
+
+      :deep(.el-pagination__jump) {
+        margin-left: 16px;
+        .el-pagination__editor {
+          margin: 0 4px;
+        }
+        .el-input__inner {
+          text-align: center;
+        }
+      }
+    }
   }
 }
 
@@ -456,6 +612,33 @@ watch([fileType, selectedFilterTag], () => {
 
       .tag-select {
         flex: 1;
+      }
+    }
+  }
+}
+
+.file-detail {
+  .detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .version-history {
+    margin-top: 20px;
+    
+    h3 {
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .version-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .version {
+        font-weight: 500;
       }
     }
   }

@@ -18,4 +18,7 @@ router.get('/list', FileController.list);
 // 删除文件
 router.delete('/:id', FileController.delete);
 
+// 获取文件详情
+router.get('/:id/detail', FileController.getDetail);
+
 module.exports = router; 

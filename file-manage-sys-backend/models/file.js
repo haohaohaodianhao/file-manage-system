@@ -160,6 +160,64 @@ class File {
     const { rows } = await pool.query(query, [fileId]);
     return rows.length > 0;
   }
+
+  /**
+   * 获取文件详情（包含标签和备份信息）
+   */
+  static async getDetailById(fileId) {
+    // 首先获取文件基本信息和标签
+    const fileQuery = `
+      SELECT f.*,
+             COALESCE(
+               json_agg(
+                 json_build_object(
+                   'id', t.id,
+                   'name', t.name
+                 )
+               ) FILTER (WHERE t.id IS NOT NULL),
+               '[]'
+             ) as tags
+      FROM files f
+      LEFT JOIN file_tags ft ON f.id = ft.file_id
+      LEFT JOIN tags t ON ft.tag_id = t.id
+      WHERE f.id = $1 AND f.is_deleted = false
+      GROUP BY f.id
+    `;
+
+    // 然后获取备份信息
+    const backupQuery = `
+      SELECT json_agg(
+        json_build_object(
+          'id', id,
+          'version', version,
+          'created_at', created_at
+        ) ORDER BY version DESC
+      ) as backups
+      FROM backups
+      WHERE file_id = $1
+    `;
+
+    try {
+      // 并行执行两个查询
+      const [fileResult, backupResult] = await Promise.all([
+        pool.query(fileQuery, [fileId]),
+        pool.query(backupQuery, [fileId])
+      ]);
+
+      if (fileResult.rows.length === 0) {
+        return null;
+      }
+
+      // 合并结果
+      return {
+        ...fileResult.rows[0],
+        backups: backupResult.rows[0]?.backups || []
+      };
+    } catch (error) {
+      console.error('获取文件详情失败:', error);
+      throw error;
+    }
+  }
 }
 
 module.exports = File; 

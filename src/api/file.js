@@ -37,4 +37,12 @@ export function deleteFile(id) {
     url: `/files/${id}`,
     method: 'delete'
   });
+}
+
+// 获取文件详情
+export function getFileDetail(id) {
+  return request({
+    url: `/files/${id}/detail`,
+    method: 'get'
+  });
 } 

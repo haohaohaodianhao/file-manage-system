@@ -171,6 +171,30 @@ class FileController {
       res.status(500).json(ResponseUtil.error('文件删除失败'));
     }
   }
+
+  /**
+   * 获取文件详情
+   */
+  static async getDetail(req, res) {
+    try {
+      const fileId = req.params.id;
+      const file = await File.getDetailById(fileId);
+
+      if (!file) {
+        return res.status(404).json(ResponseUtil.error('文件不存在'));
+      }
+
+      // 检查权限
+      if (file.user_id !== req.user.id && req.user.role !== 'admin') {
+        return res.status(403).json(ResponseUtil.error('没有权限查看此文件'));
+      }
+
+      res.json(ResponseUtil.success(file));
+    } catch (error) {
+      logger.error('获取文件详情失败:', error);
+      res.status(500).json(ResponseUtil.error('获取文件详情失败'));
+    }
+  }
 }
 
 module.exports = FileController; 

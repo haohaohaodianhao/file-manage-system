@@ -63,3 +63,16 @@
 {"level":"info","message":"为文件 3 添加标签 1","timestamp":"2024-12-02 13:44:04"}
 {"level":"info","message":"为文件 3 添加标签 4","timestamp":"2024-12-02 13:44:06"}
 {"level":"info","message":"为文件 3 添加标签 7","timestamp":"2024-12-02 13:44:07"}
+{"level":"info","message":"创建备份: 文件3 版本1","timestamp":"2024-12-02 14:00:40"}
+{"level":"info","message":"创建备份: 文件3 版本2","timestamp":"2024-12-02 14:00:45"}
+{"level":"info","message":"恢复备份: 文件3 到版本1","timestamp":"2024-12-02 14:00:52"}
+{"level":"info","message":"删除备份: 2","timestamp":"2024-12-02 14:01:01"}
+{"level":"info","message":"用户登录: admin","timestamp":"2024-12-02 14:04:08"}
+{"level":"info","message":"为文件 3 添加标签 11","timestamp":"2024-12-02 14:04:17"}
+{"level":"info","message":"文件上传成功: 7","timestamp":"2024-12-02 14:05:02"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 14:10:33"}
+{"level":"info","message":"创建备份: 文件6 版本1","timestamp":"2024-12-02 14:11:28"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 14:28:40"}
+{"code":"42P10","file":"parse_clause.c","length":160,"level":"error","line":"2820","message":"获取文件详情失败: in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list","name":"error","position":"782","routine":"transformDistinctClause","severity":"ERROR","stack":"error: in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list\n    at /home/devbox/project/file-manage-sys-backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async File.getDetailById (/home/devbox/project/file-manage-sys-backend/models/file.js:204:22)\n    at async getDetail (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:181:20)","timestamp":"2024-12-02 14:28:49"}
+{"code":"42P10","file":"parse_clause.c","length":160,"level":"error","line":"2820","message":"获取文件详情失败: in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list","name":"error","position":"782","routine":"transformDistinctClause","severity":"ERROR","stack":"error: in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list\n    at /home/devbox/project/file-manage-sys-backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async File.getDetailById (/home/devbox/project/file-manage-sys-backend/models/file.js:204:22)\n    at async getDetail (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:181:20)","timestamp":"2024-12-02 14:28:50"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 14:30:24"}
