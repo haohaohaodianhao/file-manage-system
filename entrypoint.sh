@@ -22,14 +22,18 @@ sleep 5
 # 前端服务
 cd /home/devbox/project || exit 1
 echo "Installing frontend dependencies..."
+# 确保安装 @vue/cli-service
+echo "Installing Vue CLI Service..."
+npm install @vue/cli-service --save-dev
 npm install --include=dev
 echo "Installing serve package..."
 npm install serve --save-dev
 echo "Building frontend..."
-./node_modules/.bin/vue-cli-service build
+echo "Vue CLI Service path: $(which vue-cli-service)"
+npx vue-cli-service build
 echo "Starting frontend service..."
 # 确保监听所有网络接口并添加健康检查
-./node_modules/.bin/serve -s dist --listen 8080 --no-clipboard --cors &
+npx serve -s dist --listen 8080 --no-clipboard --cors &
 
 # 等待前端服务启动
 sleep 5
