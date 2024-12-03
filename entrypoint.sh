@@ -22,29 +22,25 @@ sleep 5
 # 前端服务
 cd /home/devbox/project || exit 1
 echo "Installing frontend dependencies..."
-# 确保安装 @vue/cli-service
-echo "Installing Vue CLI Service..."
-npm install @vue/cli-service --save-dev
-npm install --include=dev
-echo "Installing serve package..."
-npm install serve --save-dev
+
+# 清理 node_modules（如果存在）
+rm -rf node_modules
+rm -rf package-lock.json
+
+# 全局安装必要的 CLI 工具
+npm install -g @vue/cli@5.0.8
+
+# 安装项目依赖
+echo "Installing project dependencies..."
+npm install
+
 echo "Building frontend..."
-echo "Vue CLI Service path: $(which vue-cli-service)"
-npx vue-cli-service build
+# 使用全局安装的 vue-cli-service
+vue-cli-service build
+
 echo "Starting frontend service..."
-# 确保监听所有网络接口并添加健康检查
-npx serve -s dist --listen 8080 --no-clipboard --cors &
+# 使用 node 的 http-server（更轻量级）
+npm install -g http-server
+http-server dist -p 8080 --cors -a 0.0.0.0
 
-# 等待前端服务启动
-sleep 5
-
-# 检查服务是否正常运行
-if ! curl -s http://localhost:8080 > /dev/null; then
-    echo "Frontend service is not running properly"
-    exit 1
-fi
-
-echo "All services started successfully"
-
-# 保持容器运行并输出日志
-exec tail -f /dev/null
+# 不需要后台运行和健康检查，因为 serve 本身会保持进程运行
