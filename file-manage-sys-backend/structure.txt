@@ -1,0 +1,23 @@
+file-manage-sys-backend/
+├── config/
+│   ├── database.js
+│   └── logger.js
+├── controllers/
+│   ├── userController.js
+│   ├── fileController.js
+│   └── logController.js
+├── middlewares/
+│   ├── auth.js
+│   └── errorHandler.js
+├── models/
+│   ├── user.js
+│   ├── file.js
+│   └── log.js
+├── routes/
+│   ├── userRoutes.js
+│   ├── fileRoutes.js
+│   └── logRoutes.js
+├── utils/
+│   └── response.js
+├── app.js
+└── package.json 

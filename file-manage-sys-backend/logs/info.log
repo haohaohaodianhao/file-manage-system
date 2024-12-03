@@ -1,0 +1,65 @@
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 12:40:03"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 12:47:28"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:06:20"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:08:03"}
+{"level":"info","message":"用户登录: admin","timestamp":"2024-12-02 13:08:49"}
+{"level":"info","message":"创建标签: 1","timestamp":"2024-12-02 13:09:07"}
+{"level":"info","message":"创建标签: 2","timestamp":"2024-12-02 13:09:14"}
+{"level":"info","message":"创建标签: 3","timestamp":"2024-12-02 13:09:18"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:11:40"}
+{"level":"info","message":"文件上传成功: 1","timestamp":"2024-12-02 13:12:03"}
+{"level":"info","message":"文件下载: 1","timestamp":"2024-12-02 13:12:26"}
+{"level":"info","message":"文件上传成功: 2","timestamp":"2024-12-02 13:13:04"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:16:34"}
+{"level":"info","message":"文件上传成功: 3","timestamp":"2024-12-02 13:16:44"}
+{"level":"info","message":"文件删除: 1","timestamp":"2024-12-02 13:16:48"}
+{"level":"info","message":"文件删除: 2","timestamp":"2024-12-02 13:16:50"}
+{"level":"info","message":"文件下载: 3","timestamp":"2024-12-02 13:16:51"}
+{"level":"info","message":"文件下载: 3","timestamp":"2024-12-02 13:18:31"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:20:52"}
+{"level":"error","message":"文件下载失败: fs.createReadStream is not a function","stack":"TypeError: fs.createReadStream is not a function\n    at download (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:96:29)","timestamp":"2024-12-02 13:21:04"}
+{"level":"error","message":"文件下载失败: fs.createReadStream is not a function","stack":"TypeError: fs.createReadStream is not a function\n    at download (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:96:29)","timestamp":"2024-12-02 13:21:18"}
+{"level":"error","message":"文件下载失败: fs.createReadStream is not a function","stack":"TypeError: fs.createReadStream is not a function\n    at download (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:96:29)","timestamp":"2024-12-02 13:21:23"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:22:53"}
+{"level":"info","message":"文件下载完成: 3","timestamp":"2024-12-02 13:23:50"}
+{"level":"info","message":"文件上传成功: 4","timestamp":"2024-12-02 13:24:12"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:26:33"}
+{"level":"info","message":"文件上传成功: 5","timestamp":"2024-12-02 13:29:10"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:32:27"}
+{"code":"42883","file":"parse_oper.c","hint":"No operator matches the given name and argument types. You might need to add explicit type casts.","length":212,"level":"error","line":"722","message":"获取文件列表失败: operator does not exist: character varying <> text[]","name":"error","position":"95","routine":"op_error","severity":"ERROR","stack":"error: operator does not exist: character varying <> text[]\n    at /home/devbox/project/file-manage-sys-backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Promise.all (index 0)\n    at async File.list (/home/devbox/project/file-manage-sys-backend/models/file.js:103:39)\n    at async list (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:140:22)","timestamp":"2024-12-02 13:32:36"}
+{"code":"42883","file":"parse_oper.c","hint":"No operator matches the given name and argument types. You might need to add explicit type casts.","length":212,"level":"error","line":"722","message":"获取文件列表失败: operator does not exist: character varying <> text[]","name":"error","position":"95","routine":"op_error","severity":"ERROR","stack":"error: operator does not exist: character varying <> text[]\n    at /home/devbox/project/file-manage-sys-backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Promise.all (index 0)\n    at async File.list (/home/devbox/project/file-manage-sys-backend/models/file.js:103:39)\n    at async list (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:140:22)","timestamp":"2024-12-02 13:32:36"}
+{"code":"42883","file":"parse_oper.c","hint":"No operator matches the given name and argument types. You might need to add explicit type casts.","length":212,"level":"error","line":"722","message":"获取文件列表失败: operator does not exist: character varying <> text[]","name":"error","position":"95","routine":"op_error","severity":"ERROR","stack":"error: operator does not exist: character varying <> text[]\n    at /home/devbox/project/file-manage-sys-backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Promise.all (index 0)\n    at async File.list (/home/devbox/project/file-manage-sys-backend/models/file.js:103:39)\n    at async list (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:140:22)","timestamp":"2024-12-02 13:32:59"}
+{"code":"42883","file":"parse_oper.c","hint":"No operator matches the given name and argument types. You might need to add explicit type casts.","length":212,"level":"error","line":"722","message":"获取文件列表失败: operator does not exist: character varying <> text[]","name":"error","position":"95","routine":"op_error","severity":"ERROR","stack":"error: operator does not exist: character varying <> text[]\n    at /home/devbox/project/file-manage-sys-backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Promise.all (index 0)\n    at async File.list (/home/devbox/project/file-manage-sys-backend/models/file.js:103:39)\n    at async list (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:140:22)","timestamp":"2024-12-02 13:32:59"}
+{"code":"42883","file":"parse_oper.c","hint":"No operator matches the given name and argument types. You might need to add explicit type casts.","length":212,"level":"error","line":"722","message":"获取文件列表失败: operator does not exist: character varying <> text[]","name":"error","position":"79","routine":"op_error","severity":"ERROR","stack":"error: operator does not exist: character varying <> text[]\n    at /home/devbox/project/file-manage-sys-backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Promise.all (index 1)\n    at async File.list (/home/devbox/project/file-manage-sys-backend/models/file.js:103:39)\n    at async list (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:140:22)","timestamp":"2024-12-02 13:33:23"}
+{"code":"42883","file":"parse_oper.c","hint":"No operator matches the given name and argument types. You might need to add explicit type casts.","length":212,"level":"error","line":"722","message":"获取文件列表失败: operator does not exist: character varying <> text[]","name":"error","position":"95","routine":"op_error","severity":"ERROR","stack":"error: operator does not exist: character varying <> text[]\n    at /home/devbox/project/file-manage-sys-backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Promise.all (index 0)\n    at async File.list (/home/devbox/project/file-manage-sys-backend/models/file.js:103:39)\n    at async list (/home/devbox/project/file-manage-sys-backend/controllers/fileController.js:140:22)","timestamp":"2024-12-02 13:33:23"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:34:06"}
+{"level":"info","message":"文件上传成功: 6","timestamp":"2024-12-02 13:34:54"}
+{"level":"info","message":"文件下载完成: 6","timestamp":"2024-12-02 13:35:06"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:38:37"}
+{"level":"info","message":"为文件 6 添加标签 2","timestamp":"2024-12-02 13:39:05"}
+{"level":"info","message":"为文件 6 添加标签 1","timestamp":"2024-12-02 13:39:08"}
+{"level":"info","message":"为文件 6 添加标签 3","timestamp":"2024-12-02 13:39:10"}
+{"level":"info","message":"为文件 5 添加标签 1","timestamp":"2024-12-02 13:39:17"}
+{"level":"info","message":"为文件 5 添加标签 3","timestamp":"2024-12-02 13:39:19"}
+{"level":"info","message":"为文件 4 添加标签 1","timestamp":"2024-12-02 13:39:24"}
+{"level":"info","message":"创建标签: 4","timestamp":"2024-12-02 13:39:33"}
+{"level":"info","message":"创建标签: 5","timestamp":"2024-12-02 13:39:37"}
+{"level":"info","message":"创建标签: 6","timestamp":"2024-12-02 13:39:42"}
+{"level":"info","message":"创建标签: 7","timestamp":"2024-12-02 13:39:48"}
+{"level":"info","message":"为文件 6 添加标签 4","timestamp":"2024-12-02 13:39:52"}
+{"level":"info","message":"为文件 6 添加标签 7","timestamp":"2024-12-02 13:39:54"}
+{"level":"info","message":"为文件 6 添加标签 5","timestamp":"2024-12-02 13:39:56"}
+{"level":"info","message":"为文件 6 添加标签 6","timestamp":"2024-12-02 13:39:57"}
+{"level":"info","message":"创建标签: 8","timestamp":"2024-12-02 13:40:09"}
+{"level":"info","message":"创建标签: 9","timestamp":"2024-12-02 13:40:13"}
+{"level":"info","message":"创建标签: 10","timestamp":"2024-12-02 13:40:17"}
+{"level":"info","message":"创建标签: 11","timestamp":"2024-12-02 13:40:20"}
+{"level":"info","message":"为文件 6 添加标签 8","timestamp":"2024-12-02 13:40:26"}
+{"level":"info","message":"为文件 6 添加标签 9","timestamp":"2024-12-02 13:40:27"}
+{"level":"info","message":"为文件 6 添加标签 10","timestamp":"2024-12-02 13:40:29"}
+{"level":"info","message":"为文件 6 添加标签 11","timestamp":"2024-12-02 13:40:30"}
+{"level":"info","message":"删除标签: 8","timestamp":"2024-12-02 13:40:37"}
+{"level":"info","message":"服务器运行在端口 3000","timestamp":"2024-12-02 13:43:11"}
+{"level":"info","message":"为文件 3 添加标签 1","timestamp":"2024-12-02 13:44:04"}
+{"level":"info","message":"为文件 3 添加标签 4","timestamp":"2024-12-02 13:44:06"}
+{"level":"info","message":"为文件 3 添加标签 7","timestamp":"2024-12-02 13:44:07"}
